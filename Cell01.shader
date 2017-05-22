@@ -71,17 +71,17 @@ Shader "Noise/Cell01"
 		//	SOMELARGEFLOAT should be in the range of 400.0->1000.0 and needs to be hand picked.  Only some give good results.
 		//	3D Noise is achieved by offsetting the SOMELARGEFLOAT value by the Z coordinate
 		//
-		float4 FAST32_hash_3D_Cell( float3 gridcell )	//	generates 4 different random numbers for the single given cell point
+		min16float4 FAST32_hash_3D_Cell( min16float3 gridcell )	//	generates 4 different random numbers for the single given cell point
 		{
 			//    gridcell is assumed to be an integer coordinate
 		
 			//	TODO: 	these constants need tweaked to find the best possible noise.
 			//			probably requires some kind of brute force computational searching or something....
 			
-			const float2 OFFSET = float2( 50.0, 161.0 );
-			const float DOMAIN = 69.0;
-			const float4 SOMELARGEFLOATS = float4( 635.298681, 682.357502, 668.926525, 588.255119 );
-			const float4 ZINC = float4( 48.500388, 65.294118, 63.934599, 63.279683 );
+			const min16float2 OFFSET = min16float2( 50.0, 161.0 );
+			const min16float DOMAIN = 69.0;
+			const min16float4 SOMELARGEFLOATS = min16float4( 635.298681, 682.357502, 668.926525, 588.255119 );
+			const min16float4 ZINC = min16float4( 48.500388, 65.294118, 63.934599, 63.279683 );
 		
 			//	truncate the domain
 			gridcell.xyz = gridcell - floor(gridcell * ( 1.0 / DOMAIN )) * DOMAIN;
@@ -110,7 +110,7 @@ Shader "Noise/Cell01"
 			for (int z = MinVal; z <= MaxVal; z++) {
 				for (int y = MinVal; y <= MaxVal; y++) {
 					for (int x = MinVal; x <= MaxVal; x++) {
-						cell = FAST32_hash_3D_Cell(float3(xi + x, yi + y, zi + z)).xyz;
+						cell = FAST32_hash_3D_Cell(min16float3(xi + x, yi + y, zi + z)).xyz;
 						cell.x += (float(x) - xf);
 						cell.y += (float(y) - yf);
 						cell.z += (float(z) - zf);
