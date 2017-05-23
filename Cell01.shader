@@ -78,10 +78,10 @@ Shader "Noise/Cell01"
 			//	TODO: 	these constants need tweaked to find the best possible noise.
 			//			probably requires some kind of brute force computational searching or something....
 			
-			const min16float2 OFFSET = min16float2( 50.0, 161.0 );
-			const min16float DOMAIN = 69.0;
-			const min16float4 SOMELARGEFLOATS = min16float4( 635.298681, 682.357502, 668.926525, 588.255119 );
-			const min16float4 ZINC = min16float4( 48.500388, 65.294118, 63.934599, 63.279683 );
+			 min16float2 OFFSET = min16float2( 50.0, 161.0 );
+			 min16float DOMAIN = 69.0;
+			 min16float4 SOMELARGEFLOATS = min16float4( 635.298681, 682.357502, 668.926525, 588.255119 );
+			 min16float4 ZINC = min16float4( 48.500388, 65.294118, 63.934599, 63.279683 );
 		
 			//	truncate the domain
 			gridcell.xyz = gridcell - floor(gridcell * ( 1.0 / DOMAIN )) * DOMAIN;
